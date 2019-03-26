@@ -9,12 +9,12 @@
         <p th:text="${name}" ></p>
         <p th:text="|Hello! ${name}!|" ></p>
 
-        <tbody>
-            <tr th:each="color:${colors}">
+        <!--<tbody>-->
+            <p th:each="color:${colors}">
                 <!--<td th:text=""${colorStat.count}></td>-->
-                <td th:text="${color}" ></td>
-            </tr>
-        </tbody>
+                <span th:text="${color}" ></span>
+            </p>
+        <!--</tbody>-->
 
         <thead>
             <th th:each="kv : ${map}" th:text="|key:${kv.key} value:${kv.value}|"></th>
@@ -22,7 +22,7 @@
         </thead>
 
         <p th:text= "${user.getName()}"></p>
-        <p th:text= "${user.getDescription()}"></p>
+        <!--<p th:text= "${user.getDescription()}"></p>-->
 
     </pre>
     </body>
