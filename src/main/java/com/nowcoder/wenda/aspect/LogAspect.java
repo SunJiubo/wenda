@@ -17,12 +17,14 @@ public class LogAspect {
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     @Before("execution(* com.nowcoder.wenda.controller.*Controller.*(..))")
-    public void beforeMethod(JoinPoint joinPoint){
+    public void beforeMethod(JoinPoint joinPoint) {
         StringBuilder sb = new StringBuilder();
-        for(Object arg:joinPoint.getArgs()){
-            sb.append("arg:"+arg.toString()+"|");
+        for (Object arg : joinPoint.getArgs()) {
+            if (arg != null) {
+                sb.append("arg:" + arg.toString() + "|");
+            }
         }
-        logger.info("befor method  "+ sb.toString());
+        logger.info("before method:" + sb.toString());
     }
 
     @After("execution(* com.nowcoder.wenda.controller.IndexController.*(..))")

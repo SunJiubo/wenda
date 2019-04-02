@@ -2,6 +2,7 @@ package com.nowcoder.wenda.controller;
 
 
 import com.nowcoder.wenda.dao.QuestionDAO;
+import com.nowcoder.wenda.model.HostHolder;
 import com.nowcoder.wenda.model.Question;
 import com.nowcoder.wenda.model.ViewObject;
 import com.nowcoder.wenda.service.QuestionService;
