@@ -2,8 +2,8 @@
 
 <html lang="zh-CN" dropeffect="none" class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile" style="" xmlns:th="http://www.thymeleaf.org" >
 
-<head th:replace="header::header1"></head>
-<div th:replace="header::header2"></div>
+<head th:insert="~{header::header1}"></head>
+<div th:insert="~{header::header2}"></div>
 <div class="zg-wrap zu-main clearfix " role="main">
         <div class="zu-main-content">
             <div class="zu-main-content-inner">
@@ -31,7 +31,7 @@
                                         <meta itemprop="answer-id" content="389034">
                                         <meta itemprop="answer-url-token" content="13174385">
                                         <h2 class="feed-title">
-                                            <a class="question_link" target="_blank" href="https://nowcoder.com/question/19857995#answer-389034"><td th:text="${vo.get('question')['title']}"></td> </a></h2>
+                                            <a class="question_link" target="_blank" th:href="|/question/${vo.get('question')['id']}|"><td th:text="${vo.get('question')['title']}"></td> </a></h2>
                                         <div class="feed-question-detail-item">
                                             <div class="question-description-plain zm-editable-content"></div>
                                         </div>
