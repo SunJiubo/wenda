@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="zh-CN" dropeffect="none" class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile" style="" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh-CN" dropeffect="none"
+      class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
+      style=""
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:insert="~{header::header1}"></head>
 <div th:insert="~{header::header2}"></div>
@@ -70,7 +74,7 @@
                                                     <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">
                                                         <i class="z-icon-follow"></i>关注问题</a>
                                                     <a href="#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
-                                                        <i class="z-icon-comment"></i><td th:text="${vo.get('question')['content']}"></td> 条评论</a>
+                                                        <i class="z-icon-comment"></i><td th:text="${vo.get('question')['commentCount']}"></td> 条评论</a>
                                                     <a href="#" class="meta-item js-thank" data-thanked="false">
                                                         <i class="z-icon-thank"></i>感谢</a>
 
@@ -107,8 +111,9 @@
             },
             "editor": ["bio", "topic"]
         }</script>
-    <script type="text/template" id="tmpl-Guide-BioEditor">< div class = "Guide-BioEditor" > <div class = "Guide-header" > <h2 class = "Guide-title" > 你的职业或专业是什么？ < /h2>
-    <p class="Guide-subtitle">简单介绍自己，会为你挑选你可能感兴趣话题</p ></div>
+    <script type="text/template" id="tmpl-Guide-BioEditor">< div class = "Guide-BioEditor" > <div class = "Guide-header" >
+        <h2 class = "Guide-title" > 你的职业或专业是什么？ </h2>
+        <p class="Guide-subtitle">简单介绍自己，会为你挑选你可能感兴趣话题</p ></div>
     <div class="Guide-content">
     <div class="Guide-BioEditorForm">
     <button class="Guide-BioEditorButton Button Button-flatPrimary js-submit">完成</button > <div class = "Guide-BioEditorInputWrapper" > <input class = "Guide-BioEditorInput Input"name = "bio"placeholder = "比如医生、律师、设计师" > </div></div > <div class = "Guide-BioEditorUsers" > <p class = "Guide-BioEditorDescription" > 他们是这样介绍自己的 < /p>
@@ -121,7 +126,8 @@
         < span class = "Guide-BioEditorBio" > Lonely Planet作者，潜水员 < /span></li > <li class = "Guide-BioEditorItem Guide-BioEditorItem--third" > <img class = "Guide-BioEditorAvatar"src = "https://pic2.zhimg.com/02295607d866419c478062d9bfc5a041_l.jpg"width = "50"height = "50" > <span class = "Guide-BioEditorBio" > 北京大学南亚学系 < /span></li > <li class = "Guide-BioEditorItem Guide-BioEditorItem--fourth" > <img class = "Guide-BioEditorAvatar"src = "https://pic3.zhimg.com/47e67af4e15cb97d47da376d1b83cae6_l.jpg"width = "50"height = "50" > <span class = "Guide-BioEditorBio" > 机械工程师，pegasister < /span></li > <li class = "Guide-BioEditorItem Guide-BioEditorItem--fifth" > <img class = "Guide-BioEditorAvatar"src = "https://pic3.zhimg.com/f374969469745635565a63bcd36842f6_l.jpg"width = "50"height = "50" > <span class = "Guide-BioEditorBio" > 钛度科技 / 电子竞技 < /span></li > <li class = "Guide-BioEditorItem Guide-BioEditorItem--sixth" > <img class = "Guide-BioEditorAvatar"src = "https://pic2.zhimg.com/fe9e9e6dd_l.jpg"width = "50"height = "50" > <span class = "Guide-BioEditorBio" > 工科女博士 / 专业西点师 / 东京时差党 < /span></li > </ul>
     </div > </div>
     </div > </script>
-    <script type="text/template" id="tmpl-Guide-Topics">< div class = "Guide-Topics" > <div class = "Guide-header" > <h2 class = "Guide-title" > 你想关注哪些话题？ < /h2>
+    <script type="text/template" id="tmpl-Guide-Topics">< div class = "Guide-Topics" >
+    <div class = "Guide-header" > <h2 class = "Guide-title" > 你想关注哪些话题？ </h2>
     <p class="Guide-subtitle">我们将根据你关注的话题定制首页推荐内容</p ></div>
     <div class="Guide-content">
     <div class="Guide-topicsLoading">
@@ -182,5 +188,4 @@
             <div class="tooltip-arrow arrow"></div>
             <div class="tooltip-inner inner">如需转载，请通过私信或评论联系我</div></div>
     </div>
-</body>
 </html>

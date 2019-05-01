@@ -1,5 +1,5 @@
 (function (window, undefined) {
-    var Base = window.Base64 = fCreateClass('main.base.Base');
+    var Base = window.Base = fCreateClass('main.base.Base');
     $.extend(Base, {
         ready: fReady,
         tpl: fTpl,
