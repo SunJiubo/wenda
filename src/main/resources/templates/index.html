@@ -4,7 +4,7 @@
       class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
       style=""
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
 
 <head th:insert="~{header::header1}"></head>
 <div th:insert="~{header::header2}"></div>
@@ -188,4 +188,5 @@
             <div class="tooltip-arrow arrow"></div>
             <div class="tooltip-inner inner">如需转载，请通过私信或评论联系我</div></div>
     </div>
+<div th:replace="~{footer.html::footer}"></div>
 </html>

@@ -58,7 +58,8 @@ public class CommentController {
             if (hostHolder.getUser() != null) {
                 comment.setUserId(hostHolder.getUser().getId());
             } else {
-                comment.setUserId(WendaUtil.ANONYMOUS_USERID);
+//                comment.setUserId(WendaUtil.ANONYMOUS_USERID);
+                return "redirect:/reglogin?next=/question/"+questionId;
             }
             comment.setContent(content);
             comment.setEntityId(questionId);
