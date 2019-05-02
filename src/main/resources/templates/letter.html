@@ -27,9 +27,11 @@
                             </div>
                         </div>
                         <div class="chat-headbox">
+                            <a th:if="${conversation.get('unread')>0}">
                             <span class="msg-num">
                                 [[${conversation.get('unread')}]]
                             </span>
+                            </a>
                             <a class="list-head">
                                 <img alt="头像" th:src="${conversation.get('user')['headUrl']}">
                             </a>
