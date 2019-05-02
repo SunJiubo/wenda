@@ -64,20 +64,33 @@ public class MessageController {
     }
 
     @RequestMapping(path = {"/msg/list"},method = {RequestMethod.GET})
-    public String conversationList(){
+    public String getConversationList(Model model){
+        if(hostHolder.getUser()==null){
+            return "redirect:/reglogin";
+        }
+        int localUserId = hostHolder.getUser().getId();
+        List<Message> conversationList = messageService.getConversationList(localUserId,0,10);
+        List<ViewObject> conversations = new ArrayList<>();
+        for(Message message :  conversationList){
+            ViewObject vo = new ViewObject();
+            vo.set("message",message);
+            int targetId = message.getFromId() == localUserId ? message.getToId():message.getFromId();
+            vo.set("user",userService.getUser(targetId));
+            vo.set("unread",messageService.getConvesationUnreadCount(localUserId,message.getConversationId()));
+            conversations.add(vo);
+        }
+        model.addAttribute("conversations",conversations);
         return "letter";
     }
 
     @RequestMapping(path = {"/msg/detail"},method = {RequestMethod.GET})
-    public String conversationDetail(Model model,
+    public String getConversationDetail(Model model,
                                      @RequestParam("conversationId") String conversationId ){
         try{
             List<Message> messageList = messageService.getConversationDetail(conversationId, 0, 10);
             List<ViewObject> messages = new ArrayList<>();
             for (Message message : messageList) {
                 ViewObject vo = new ViewObject();
-                System.out.println(message.getCreatedDate());
-                System.out.println(message.getContent());
                 vo.set("message",message);
                 vo.set("user",userService.getUser(message.getFromId()));
                 messages.add(vo);
