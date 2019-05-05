@@ -91,10 +91,10 @@ public class LoginController {
                 }
                 response.addCookie(cookie);
 
-                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
-                        .setExt("username", username)
-                        .setExt("email", "201734468@mail.sdu.edu.cn")
-                        .setActorId((int)map.get("userId")));//
+//                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
+//                        .setExt("username", username)
+//                        .setExt("email", "201734468@mail.sdu.edu.cn")
+//                        .setActorId((int)map.get("userId")));
 
                 if (StringUtils.isNotBlank(next)) {
                     return "redirect:" + next;

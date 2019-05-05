@@ -2,8 +2,11 @@ package com.nowcoder.wenda;
 
 import com.nowcoder.wenda.dao.QuestionDAO;
 import com.nowcoder.wenda.dao.UserDAO;
+import com.nowcoder.wenda.model.EntityType;
 import com.nowcoder.wenda.model.Question;
 import com.nowcoder.wenda.model.User;
+import com.nowcoder.wenda.service.FollowService;
+import com.nowcoder.wenda.util.JedisAdapter;
 import org.apache.ibatis.annotations.Select;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
 
 import java.util.Date;
 import java.util.Random;
@@ -26,6 +30,13 @@ public class InitDatabaseTests {
 
     @Autowired
     QuestionDAO questionDAO;
+
+    @Autowired
+	FollowService followService;
+
+    @Autowired
+	JedisAdapter jedisAdapter;
+
 	@Test
 	public void initDatabase() {
 		Random random = new Random();
@@ -36,6 +47,11 @@ public class InitDatabaseTests {
 			user.setPassword("");
 			user.setSalt("");
 			userDAO.addUser(user);
+
+			//相互关注
+			for(int j = 1; j<i;j++ ){
+				followService.follow(j, EntityType.ENTITY_USER,i);
+			}
 
 
 			user.setPassword("newpassword");
