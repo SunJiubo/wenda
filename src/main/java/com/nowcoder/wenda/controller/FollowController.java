@@ -3,10 +3,7 @@ package com.nowcoder.wenda.controller;
 import com.nowcoder.wenda.async.EventModel;
 import com.nowcoder.wenda.async.EventProducer;
 import com.nowcoder.wenda.async.EventType;
-import com.nowcoder.wenda.model.Comment;
-import com.nowcoder.wenda.model.EntityType;
-import com.nowcoder.wenda.model.HostHolder;
-import com.nowcoder.wenda.model.Question;
+import com.nowcoder.wenda.model.*;
 import com.nowcoder.wenda.service.*;
 import com.nowcoder.wenda.util.WendaUtil;
 import org.slf4j.Logger;
@@ -15,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
+import org.springframework.ui.Model;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by nowcoder on 2016/7/2.
@@ -140,11 +136,53 @@ public class FollowController {
         return WendaUtil.getJSONString(ret? 0 :1 ,info);
     }
 
-//    @RequestMapping(path = {"/user/{uid}/followers"}, method = {RequestMethod.GET})
-//    @ResponseBody
-//    public String followQuestion(Model model,
-//                                 @PathVariable("uid") int userId) {
-//
-//    }
+    @RequestMapping(path = {"/user/{uid}/followers"}, method = {RequestMethod.GET})
+    public String followers(Model model, @PathVariable("uid") int userId) {
+        List<Integer> followerIds = followService.getFollowers(EntityType.ENTITY_USER, userId, 0, 10);
+        if (hostHolder.getUser() != null) {
+            model.addAttribute("followers", getUsersInfo(hostHolder.getUser().getId(), followerIds));
+        } else {
+            model.addAttribute("followers", getUsersInfo(0, followerIds));
+        }
+        model.addAttribute("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, userId));
+        model.addAttribute("curUser", userService.getUser(userId));
+        return "followers";
+    }
+
+    @RequestMapping(path = {"/user/{uid}/followees"}, method = {RequestMethod.GET})
+    public String followees(Model model, @PathVariable("uid") int userId) {
+        List<Integer> followeeIds = followService.getFollowees(userId, EntityType.ENTITY_USER, 0, 10);
+
+        if (hostHolder.getUser() != null) {
+            model.addAttribute("followees", getUsersInfo(hostHolder.getUser().getId(), followeeIds));
+        } else {
+            model.addAttribute("followees", getUsersInfo(0, followeeIds));
+        }
+        model.addAttribute("followeeCount", followService.getFolloweeCount(userId, EntityType.ENTITY_USER));
+        model.addAttribute("curUser", userService.getUser(userId));
+        return "followees";
+    }
+
+    private List<ViewObject> getUsersInfo(int localUserId, List<Integer> userIds) {
+        List<ViewObject> userInfos = new ArrayList<ViewObject>();
+        for (Integer uid : userIds) {
+            User user = userService.getUser(uid);
+            if (user == null) {
+                continue;
+            }
+            ViewObject vo = new ViewObject();
+            vo.set("user", user);
+            vo.set("commentCount", commentService.getUserCommentCount(uid));
+            vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, uid));
+            vo.set("followeeCount", followService.getFolloweeCount(uid, EntityType.ENTITY_USER));
+            if (localUserId != 0) {
+                vo.set("followed", followService.isFollower(localUserId, EntityType.ENTITY_USER, uid));//
+            } else {
+                vo.set("followed", false);
+            }
+            userInfos.add(vo);
+        }
+        return userInfos;
+    }
 
 }

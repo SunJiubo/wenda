@@ -102,7 +102,7 @@ public class IndexController {
         if("admin".equals(key)){
             return "hello admin";
         }
-        throw new IllegalArgumentException("��������");
+        throw new IllegalArgumentException("参数不对");
     }
 
     @ExceptionHandler()
