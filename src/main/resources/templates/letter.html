@@ -14,14 +14,14 @@
             <ul class="letter-list">
                 <tr th:each="conversation:${conversations}">
                     <li id="conversation-item-10005_622873">
-                        <a class="letter-link" th:href="'/msg/detail?conversationId='+${conversation.get('message')['conversationId']}"></a>
+                        <a class="letter-link" th:href="|/msg/detail?conversationId=${conversation.get('message')['conversationId']}|"></a>
                         <div class="letter-info">
                             <span class="l-time">[[${#dates.format(conversation.get('message')['createdDate'], 'yyyy年MM月dd HH:mm:ss')}]]</span>
                             <div class="l-operate-bar">
                                 <!--<a href="javascript:void(0);" class="sns-action-del" data-id="10005_622873">
                                 删除
                                 </a>-->
-                                <a th:href="'/msg/detail?conversationId='+${conversation.get('message')['conversationId']}">
+                                <a th:href="|/msg/detail?conversationId='${conversation.get('message')['conversationId']}|">
                                     共[[${conversation.get('message')['id']}]]条会话
                                 </a>
                             </div>

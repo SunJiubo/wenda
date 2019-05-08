@@ -103,6 +103,10 @@ public class UserService {
         return userDAO.selectById(id);
     }
 
+    public User getUserByName(String userName){
+        return userDAO.selectByName("admin");
+    }
+
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }

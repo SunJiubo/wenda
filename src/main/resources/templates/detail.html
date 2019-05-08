@@ -58,7 +58,7 @@
                         <div class="list zu-small-avatar-list zg-clear js-user-list">
                             <tr th:each="vo:${followUsers}" >
                             <a class="zm-item-link-avatar js-user-${vo.id}" th:href="|/user/${vo.get('id')}|"
-                               data-original_title="${vo.name}">
+                               th:data-original_title="${vo.get('name')}">
                                 <img th:src="${vo.get('headUrl')}"
                                      class="zm-item-img-avatar"></a>
                             </tr>
@@ -66,19 +66,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="zm-side-section">-->
-                <!--<div class="zm-side-section-inner" id="zh-question-side-header-wrap">-->
-                    <!--<button data-follow="q:m:button" class="follow-button zg-follow zg-btn-green" data-id="6727688">-->
-                        <!--关注问题-->
-                    <!--</button>-->
-                    <!--<div class="zh-question-followers-sidebar">-->
-                        <!--<div class="zg-gray-normal">-->
-                            <!--<a href="">-->
-                                <!--<strong>9</strong></a>人关注该问题-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
             <div id="zh-question-answer-wrap" data-pagesize="10" class="zh-question-answer-wrapper navigable"
                  data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}"
                  data-init="{&quot;params&quot;: {&quot;url_token&quot;: 36301524, &quot;pagesize&quot;: 10, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}">

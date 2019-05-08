@@ -1,8 +1,10 @@
 package com.nowcoder.wenda.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.nowcoder.wenda.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.MessageDigest;
 import java.util.Map;
@@ -13,8 +15,13 @@ import java.util.Map;
 public class WendaUtil {
     private static final Logger logger = LoggerFactory.getLogger(WendaUtil.class);
 
+    @Autowired
+    UserService userService;
+
+    int userAdminId = userService.getUserByName("admin").getId();
+
     public static int ANONYMOUS_USERID = 3;
-    public static int SYSTEM_USERID = 15;
+    public static int SYSTEM_USERID = 11;
 
     public static String getJSONString(int code){
         JSONObject json = new JSONObject();

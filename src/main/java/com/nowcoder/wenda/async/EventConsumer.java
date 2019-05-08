@@ -41,6 +41,8 @@ public class EventConsumer implements InitializingBean, ApplicationContextAware 
                         config.put(type, new ArrayList<EventHandler>());
                     }
                     config.get(type).add(entry.getValue());
+                    System.out.println("进来了");
+                    System.out.println(config.get(type));
                 }
             }
         }

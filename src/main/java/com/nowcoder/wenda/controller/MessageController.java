@@ -76,6 +76,7 @@ public class MessageController {
             vo.set("message",message);
             int targetId = message.getFromId() == localUserId ? message.getToId():message.getFromId();
             vo.set("user",userService.getUser(targetId));
+            System.out.println(userService.getUser(targetId).getHeadUrl());
             vo.set("unread",messageService.getConvesationUnreadCount(localUserId,message.getConversationId()));
             System.out.println(messageService.getConvesationUnreadCount(localUserId,message.getConversationId()));
             conversations.add(vo);
@@ -175,25 +176,25 @@ public class MessageController {
 //            return WendaUtil.getJSONString(1, "插入站内信失败");
 //        }
 //    }
-//
-//
-//    @RequestMapping(path = {"/msg/jsonAddMessage"}, method = {RequestMethod.POST})
-//    @ResponseBody
-//    public String addMessage(@RequestParam("fromId") int fromId,
-//                             @RequestParam("toId") int toId,
-//                             @RequestParam("content") String content) {
-//        try {
-//            Message msg = new Message();
-//            msg.setContent(content);
-//            msg.setFromId(fromId);
-//            msg.setToId(toId);
-//            msg.setCreatedDate(new Date());
-//            //msg.setConversationId(fromId < toId ? String.format("%d_%d", fromId, toId) : String.format("%d_%d", toId, fromId));
-//            messageService.addMessage(msg);
-//            return WendaUtil.getJSONString(msg.getId());
-//        } catch (Exception e) {
-//            logger.error("增加评论失败" + e.getMessage());
-//            return WendaUtil.getJSONString(1, "插入评论失败");
-//        }
-//    }
+
+
+    @RequestMapping(path = {"/msg/jsonAddMessage"}, method = {RequestMethod.POST})
+    @ResponseBody
+    public String addMessage(@RequestParam("fromId") int fromId,
+                             @RequestParam("toId") int toId,
+                             @RequestParam("content") String content) {
+        try {
+            Message msg = new Message();
+            msg.setContent(content);
+            msg.setFromId(fromId);
+            msg.setToId(toId);
+            msg.setCreatedDate(new Date());
+            //msg.setConversationId(fromId < toId ? String.format("%d_%d", fromId, toId) : String.format("%d_%d", toId, fromId));
+            messageService.addMessage(msg);
+            return WendaUtil.getJSONString(msg.getId());
+        } catch (Exception e) {
+            logger.error("增加评论失败" + e.getMessage());
+            return WendaUtil.getJSONString(1, "插入评论失败");
+        }
+    }
 }

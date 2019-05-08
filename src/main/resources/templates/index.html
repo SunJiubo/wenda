@@ -44,7 +44,9 @@
                                         </div>
                                         <div class="expandable entry-body">
                                             <div class="zm-item-vote">
-                                                <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount=""></a></div><!--${vo.followCount}-->
+                                                <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount=""></a>
+                                                <td th:text="${vo.get('followCount')}"></td>
+                                            </div>
                                             <div class="zm-item-answer-author-info">
                                                 <a class="author-link" data-tip="p$b$amuro1230" target="_blank" th:href="|/user/${vo.get('user')['id']}|"><td th:text="${vo.get('user')['name']}"></td> </a>
                                                 ，<td th:text="${#dates.format(vo.get('question')['createdDate'], 'yyyy年MM月dd HH:mm:ss')}"></div>
