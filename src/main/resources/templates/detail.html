@@ -81,12 +81,12 @@
                         <td th:switch="${comment.get('liked')} gt '0'">
                         <button th:case="true" class="up js-like pressed" title="赞同">
                             <i class="icon vote-arrow"></i>
-                            <span class="count js-voteCount"><a th:text="${comment.get('likeCount')}"></a></span>
+                            <span class="count js-voteCount">[[${comment.get('likeCount')}]]</span><!--<a th:text="${comment.get('likeCount')}"></a>-->
                             <span class="label sr-only">赞同</span>
                         </button>
                         <button th:case="false" class="up js-like" title="赞同">
                             <i class="icon vote-arrow"></i>
-                            <span class="count js-voteCount"><a th:text="${comment.get('likeCount')}"></a></span>
+                            <span class="count js-voteCount">[[${comment.get('likeCount')}]]</span><!--<a th:text="${comment.get('likeCount')}"></a>-->
                             <span class="label sr-only">赞同</span>
                         </button>
                         </td>
@@ -115,7 +115,7 @@
                         <div class="zm-item-vote-info" data-votecount="28" data-za-module="VoteInfo">
                                 <span class="voters text">
                                     <a href="" class="more text">
-                                        <span class="js-voteCount"><a th:text="${comment.get('likeCount')}"></a>人赞同</span>
+                                        <span class="js-voteCount">[[${comment.get('likeCount')}]]</span>人赞同<!--<a th:text="${comment.get('likeCount')}"></a>-->
                                     </a>
                                 </span>
                         </div>
