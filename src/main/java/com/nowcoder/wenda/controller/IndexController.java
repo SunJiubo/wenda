@@ -17,19 +17,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-//@Controller
+@Controller
 public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     WendaService wendaService ;
 
-    @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET})
-    @ResponseBody
-    public String index(HttpSession httpSession) {
-        logger.info("VISIT HOME");
-        return wendaService.getMessage(2) + "<br>  Hello NowCoder  <br>" + httpSession.getAttribute("msg");
-    }
+//    @RequestMapping(path = {"/home"}, method = {RequestMethod.GET})
+//    @ResponseBody
+//    public String index(HttpSession httpSession) {
+//        logger.info("VISIT HOME");
+//        return wendaService.getMessage(2) + "<br>  Hello NowCoder  <br>" + httpSession.getAttribute("msg");
+//    }
 
     @RequestMapping(path={"/profile/{groupId}/{userId}"})
     @ResponseBody
@@ -40,7 +40,7 @@ public class IndexController {
         return String.format("Profile Page of %s / %d, t:%d k:%s",groupId,userId,type,key);
     }
 
-    @RequestMapping(path={"/thy"},method = {RequestMethod.GET})
+    @RequestMapping(path={"/home"},method = {RequestMethod.GET})
     public String template(Model model){
         model.addAttribute("name","thymeleaf");
         List<String> colors = Arrays.asList(new String[]{"RED","GREEN","BLUE"});
