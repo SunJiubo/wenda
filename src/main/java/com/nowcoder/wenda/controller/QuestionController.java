@@ -1,5 +1,8 @@
 package com.nowcoder.wenda.controller;
 
+import com.nowcoder.wenda.async.EventModel;
+import com.nowcoder.wenda.async.EventProducer;
+import com.nowcoder.wenda.async.EventType;
 import com.nowcoder.wenda.model.*;
 import com.nowcoder.wenda.service.*;
 import com.nowcoder.wenda.util.WendaUtil;
@@ -36,6 +39,9 @@ public class QuestionController {
     @Autowired
     FollowService followService;
 
+    @Autowired
+    EventProducer eventProducer;
+
     @RequestMapping(value = "/question/add",method = {RequestMethod.POST})
     @ResponseBody
     public String addQuestion(@RequestParam("title") String title,
@@ -53,7 +59,10 @@ public class QuestionController {
                 question.setUserId(hostHolder.getUser().getId());
             }
             if(questionService.addQuestion(question)>0){
-             return WendaUtil.getJSONString(0);
+                eventProducer.fireEvent(new EventModel(EventType.ADD_QUESTION)
+                        .setActorId(question.getUserId()).setEntityId(question.getId())
+                        .setExt("title", question.getTitle()).setExt("content", question.getContent()));
+                return WendaUtil.getJSONString(0);
             }
         }catch (Exception e){
             logger.error("增加题目失败"+e.getMessage());

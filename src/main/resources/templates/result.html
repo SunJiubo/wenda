@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--#set($bodyclass = "page-search")-->
+<html lang="zh-CN" dropeffect="none"
+      class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
+      style=""
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
+
+<head th:insert="~{header::header1}"></head>
+<div th:insert="~{header::header2}"></div>
+<link rel="stylesheet" href="../styles/index.css">
+<link rel="stylesheet" href="../styles/result.css">
+<link rel="stylesheet" href="../styles/detail.css">
+<div class="zg-wrap zu-main clearfix" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <ul class="list contents navigable">
+                <tr th:each="vo:${vos}">
+                    <div class="feed-item folding feed-item-hook feed-item-2
+                        " feed-item-a="" data-type="a" id="feed-2" data-za-module="FeedItem" data-za-index="">
+                        <meta itemprop="ZReactor" data-id="389034" data-meta="{&quot;source_type&quot;: &quot;promotion_answer&quot;, &quot;voteups&quot;: 4168, &quot;comments&quot;: 69, &quot;source&quot;: []}">
+                        <div class="feed-item-inner">
+                            <div class="avatar">
+                                <a th:title="${vo.get('user')['name']}" data-tip="p$t$amuro1230" class="zm-item-link-avatar" target="_blank" href="https://nowcoder.com/people/amuro1230">
+                                    <img th:src="${vo.get('user')['headUrl']}" class="zm-item-img-avatar"></a>
+                            </div>
+                            <div class="feed-main">
+                                <div class="feed-content" data-za-module="AnswerItem">
+                                    <meta itemprop="answer-id" content="389034">
+                                    <meta itemprop="answer-url-token" content="13174385">
+                                    <h2 class="feed-title">
+                                        <a class="question_link" target="_blank" th:href="|/question/${vo.get('question')['id']}|"><td th:utext="${vo.get('question')['title']}"></td> </a></h2>
+                                    <div class="feed-question-detail-item">
+                                        <div class="question-description-plain zm-editable-content"></div>
+                                    </div>
+                                    <div class="expandable entry-body">
+                                        <div class="zm-item-vote">
+                                            <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">
+                                                [[${vo.get('followCount')}]]</a>
+                                        </div>
+                                        <div class="zm-item-answer-author-info">
+                                            <a class="author-link" data-tip="p$b$amuro1230" target="_blank" th:href="|/user/${vo.get('user')['id']}|"><td th:utext="${vo.get('user')['name']}"></td> </a>
+                                            ，<td th:utext="${#dates.format(vo.get('question')['createdDate'], 'yyyy年MM月dd HH:mm:ss')}"></div>
+                                        <div class="zm-item-vote-info" data-votecount="4168" data-za-module="VoteInfo">
+                                                <span class="voters text">
+                                                    <a href="#" class="more text">
+                                                        <span class="js-voteCount">4168</span>&nbsp;人赞同</a></span>
+                                        </div>
+                                        <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="123114" data-action="/answer/content" data-author-name="李淼" data-entry-url="/question/19857995/answer/13174385">
+                                            <div class="zh-summary summary clearfix"><td th:utext="${vo.get('question')['content']}"></td></div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-meta">
+                                        <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                                            <div class="zm-meta-panel">
+                                                <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">
+                                                    <i class="z-icon-follow"></i>关注问题</a>
+                                                <a href="#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+                                                    <i class="z-icon-comment"></i><td th:utext="${vo.get('question')['commentCount']}"></td> 条评论</a>
+
+
+                                                <button class="meta-item item-collapse js-collapse">
+                                                    <i class="z-icon-fold"></i>收起</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<li class="item clearfix">-->
+                        <!--<div class="title">-->
+                            <!--<a target="_blank" th:href="|/user/${vo.get('user')['id']}|" class="js-title-link"><span th:utext="${vo.get('question')['title']}"></span> </a>-->
+                        <!--</div>-->
+                        <!--<div class="content">-->
+
+                            <!--<ul class="answers">-->
+                                <!--<li class="answer-item clearfix">-->
+                                    <!--<div class="entry answer">-->
+                                        <!--<div class="entry-left hidden-phone">-->
+                                            <!--<a class="zm-item-vote-count hidden-expanded js-expand js-vote-count" data-bind-votecount="">[[${vo.get('followCount')}]]</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="entry-body">-->
+                                            <!--<div class="entry-meta">-->
+                                                <!--<strong class="author-line"><a class="author" th:href="|/user/${vo.get('user')['id']}|">[[${vo.get('user')['name']}]]</a>，[[${#dates.format(vo.get('question')['createdDate'], 'yyyy年MM月dd HH:mm:ss')}]]</strong>-->
+                                            <!--</div>-->
+                                            <!--<div class="entry-content js-collapse-body">-->
+                                                <!--<div class="summary hidden-expanded" style="">-->
+                                                <!--[[${vo.get('question')['content']}]]-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </tr>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="~{js::js}"></div>
+<script type="text/javascript" src="/scripts/main/site/detail.js"></script>
+<div th:replace="~{footer::footer}"></div>
+</html>
