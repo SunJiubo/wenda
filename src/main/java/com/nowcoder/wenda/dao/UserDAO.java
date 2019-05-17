@@ -15,9 +15,9 @@ public interface UserDAO {
     String INSERT_FIELDS = " name, password, salt, head_url ";
     String SELECT_FIELDS = " id, " + INSERT_FIELDS;
 
-    @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
-            ") values (#{name},#{password},#{salt},#{headUrl})"})
-    int addUser(User user);
+//    @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
+//            ") values (#{name},#{password},#{salt},#{headUrl})"})
+    int addUser(@Param("user")User user);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME,
             " where id=#{id}"})

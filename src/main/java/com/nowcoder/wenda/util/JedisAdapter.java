@@ -4,15 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nowcoder.wenda.controller.CommentController;
 import com.nowcoder.wenda.model.User;
-import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.*;
 
-import javax.xml.bind.SchemaOutputResolver;
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +24,7 @@ public class JedisAdapter implements InitializingBean {
         System.out.println(String.format("%d,%s",index,object.toString()));
     }
 
-    public static void main(String[] args){
+    public static void mainx(String[] args){
         Jedis jedis = new Jedis("redis://localhost:6379/9");
         jedis.flushDB();
 
